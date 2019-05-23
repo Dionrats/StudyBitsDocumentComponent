@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+
+  pool:
+    build:
+      context: .
+      dockerfile: indy-pool.dockerfile
+      args:
+        pool_ip: 127.0.0.1
+    ports:
+      - 9701-9708:9701-9708
+    networks:
+      - prototypes
+
+  university:
+    image: drats/documents
+    ports:
+      - 8080:8080
+    depends_on:
+      - pool
+    networks:
+      - prototypes
+
+networks:
+  prototypes:
+    driver: bridge
