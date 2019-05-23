@@ -7,7 +7,7 @@ addons:
     organization: "dionrats-github"
   apt:
     packages:
-      - oracle-java11-installer
+      - oracle-java8-installer
 before_install:
   - chmod +x mvnw
 install:
