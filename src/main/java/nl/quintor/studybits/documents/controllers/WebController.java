@@ -2,9 +2,9 @@ package nl.quintor.studybits.documents.controllers;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
-import nl.quintor.studybits.documents.Utils.WalletUtils;
+import nl.quintor.studybits.documents.utils.WalletUtils;
 import nl.quintor.studybits.documents.config.WalletConfig;
-import nl.quintor.studybits.documents.Utils.WalletSafe;
+import nl.quintor.studybits.documents.utils.WalletSafe;
 import nl.quintor.studybits.documents.entities.DiD;
 import nl.quintor.studybits.documents.models.LoginModel;
 import org.hyperledger.indy.sdk.IndyException;

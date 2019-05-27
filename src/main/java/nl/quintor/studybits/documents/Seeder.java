@@ -1,9 +1,9 @@
 package nl.quintor.studybits.documents;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.quintor.studybits.documents.Utils.WalletUtils;
+import nl.quintor.studybits.documents.utils.WalletUtils;
 import nl.quintor.studybits.documents.config.WalletConfig;
-import nl.quintor.studybits.documents.Utils.WalletSafe;
+import nl.quintor.studybits.documents.utils.WalletSafe;
 import org.hyperledger.indy.sdk.IndyException;
 import org.hyperledger.indy.sdk.did.Did;
 import org.hyperledger.indy.sdk.did.DidResults;
@@ -36,7 +36,7 @@ public class Seeder {
     }
 
     private boolean needsSeeding() {
-        return !new File(walletConfig.getPath() + "/" + walletConfig.getName() + "/sqlite.db").exists();
+        return !new File(walletConfig.getPath() + walletConfig.getName() + "/sqlite.db").exists();
     }
 
     private void createWallet() {
