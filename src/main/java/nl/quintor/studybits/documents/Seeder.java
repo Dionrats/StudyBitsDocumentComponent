@@ -28,24 +28,8 @@ public class Seeder {
     public void seedWallet(ContextRefreshedEvent event) {
         if(needsSeeding()) {
             log.debug("CREATING WALLET: {}", walletConfig.getName());
-            try {
-                Wallet.createWallet(WalletUtils.composeConfig(walletConfig.getName(), walletConfig.getPath()), WalletUtils.composeUnlockCredentials()).get();
-                WalletSafe walletSafe = new WalletSafe(walletConfig);
-                CompletableFuture<DidResults.CreateAndStoreMyDidResult> future = Did.createAndStoreMyDid(walletSafe.unlock(), "{}");
-
-                future.thenRun(() -> {
-                    try {
-                        walletSafe.lock();
-                    } catch (IndyException e) {
-                        log.error(e.getMessage());
-                    }
-                });
-
-                DidResults.CreateAndStoreMyDidResult result = future.get();
-                log.debug("WALLET DID: {}", result.getDid());
-            } catch (IndyException | InterruptedException | ExecutionException e) {
-                log.error(e.getMessage());
-            }
+            createWallet();
+            createDiD();
         } else {
             log.debug("FOUND WALLET: {}", walletConfig.getName());
         }
@@ -53,5 +37,23 @@ public class Seeder {
 
     private boolean needsSeeding() {
         return !new File(walletConfig.getPath() + "/" + walletConfig.getName() + "/sqlite.db").exists();
+    }
+
+    private void createWallet() {
+        try {
+            Wallet.createWallet(WalletUtils.composeConfig(walletConfig.getName(), walletConfig.getPath()), WalletUtils.composeUnlockCredentials()).get();
+        } catch (InterruptedException | ExecutionException | IndyException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    private void createDiD() {
+        try(WalletSafe walletSafe = new WalletSafe(walletConfig)) {
+            CompletableFuture<DidResults.CreateAndStoreMyDidResult> future = Did.createAndStoreMyDid(walletSafe.unlock(), "{}");
+            DidResults.CreateAndStoreMyDidResult result = future.get();
+            log.debug("WALLET DID: {}", result.getDid());
+        } catch (IndyException | InterruptedException | ExecutionException e) {
+            log.error(e.getMessage());
+        }
     }
 }
