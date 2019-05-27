@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>UniversityAgent</title>
+
+  <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="screen" type="text/css" />
+
+</head>
+
+<body>
+
+  <div class="login-card">
+      <img src="https://quintor.nl/wp-content/uploads/2018/10/logo-1x.png" alt="quintor">
+    <h1>Log-in</h1><br>
+  <form action="/dashboard" enctype="multipart/form-data" method="post">
+    <input type="text" name="name" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" name="login" class="login login-submit" value="login">
+  </form>
+
+</div>
+
+  <script src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
+
+</body>
+
+</html>
