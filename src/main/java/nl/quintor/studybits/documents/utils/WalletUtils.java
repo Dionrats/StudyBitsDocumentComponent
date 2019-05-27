@@ -22,11 +22,14 @@ public class WalletUtils {
         String key = null;
         try {
             key = Wallet.generateWalletKey("{\"seed\": \"" + seed + "\"}").get();
-            if(updateCurrent)
-                currentKey = key;
-        } catch (InterruptedException | ExecutionException | IndyException e) {
+        } catch (ExecutionException | IndyException e) {
             log.error(e.getMessage());
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
+        if(updateCurrent)
+            currentKey = key;
 
         return key;
     }

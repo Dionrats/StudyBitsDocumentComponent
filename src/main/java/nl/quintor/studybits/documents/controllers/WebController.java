@@ -51,11 +51,14 @@ public class WebController {
         try(WalletSafe walletSafe = new WalletSafe(walletConfig)) {
             DiD did = new Gson().fromJson(Did.getListMyDidsWithMeta(walletSafe.unlock()).get().replaceAll("^.|.$", ""), DiD.class);
 
-            model.addAttribute("did", did.getDid());
+            model.addAttribute("did", did.getDidaddress());
             model.addAttribute("verkey", did.getVerkey());
             model.addAttribute("name", loginModel.getName());
-        } catch (IndyException | ExecutionException | InterruptedException e) {
+        } catch (IndyException | ExecutionException e) {
             log.error(e.getMessage());
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
 
         return "dashboard";

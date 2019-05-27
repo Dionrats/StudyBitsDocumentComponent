@@ -2408,7 +2408,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           leaveToActiveDropdownTrigger = true;
         }
 
-        // Close hover dropdown if mouse did not leave to either active dropdown-trigger or dropdown-content
+        // Close hover dropdown if mouse didaddress not leave to either active dropdown-trigger or dropdown-content
         if (!leaveToActiveDropdownTrigger && !leaveToDropdownContent) {
           this.close();
         }

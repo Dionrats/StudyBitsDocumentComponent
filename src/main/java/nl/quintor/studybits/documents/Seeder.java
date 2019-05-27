@@ -42,8 +42,11 @@ public class Seeder {
     private void createWallet() {
         try {
             Wallet.createWallet(WalletUtils.composeConfig(walletConfig.getName(), walletConfig.getPath()), WalletUtils.composeUnlockCredentials()).get();
-        } catch (InterruptedException | ExecutionException | IndyException e) {
+        } catch (ExecutionException | IndyException e) {
             log.error(e.getMessage());
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -52,8 +55,11 @@ public class Seeder {
             CompletableFuture<DidResults.CreateAndStoreMyDidResult> future = Did.createAndStoreMyDid(walletSafe.unlock(), "{}");
             DidResults.CreateAndStoreMyDidResult result = future.get();
             log.debug("WALLET DID: {}", result.getDid());
-        } catch (IndyException | InterruptedException | ExecutionException e) {
+        } catch (IndyException | ExecutionException e) {
             log.error(e.getMessage());
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 }
