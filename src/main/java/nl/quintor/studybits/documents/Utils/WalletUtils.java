@@ -16,7 +16,7 @@ public class WalletUtils {
         currentKey = generatWalletKey("00000000000000000000000000000001", true);
     }
 
-    private WalletUtils(){}
+    protected WalletUtils(){}
 
     public static String generatWalletKey(String seed, boolean updateCurrent) {
         String key = null;

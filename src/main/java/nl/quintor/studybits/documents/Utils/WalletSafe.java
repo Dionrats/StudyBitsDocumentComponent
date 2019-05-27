@@ -1,6 +1,5 @@
 package nl.quintor.studybits.documents.Utils;
 
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import nl.quintor.studybits.documents.config.WalletConfig;
 import org.hyperledger.indy.sdk.IndyException;
