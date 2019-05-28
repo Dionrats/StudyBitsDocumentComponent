@@ -8,16 +8,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DocumentsApplication {
 
-	private static String LIBPATH;
+	private static String libpath;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DocumentsApplication.class, args);
-		LibIndy.init(LIBPATH);
+		LibIndy.init(libpath);
 	}
 
 	@Value("${libindy.path}")
 	public void setLibPath(String libPath) {
-		LIBPATH = libPath;
+		libpath = libPath;
 	}
 
 }

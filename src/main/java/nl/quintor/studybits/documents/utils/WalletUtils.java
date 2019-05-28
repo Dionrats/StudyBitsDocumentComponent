@@ -13,6 +13,7 @@ public class WalletUtils {
     private static String currentKey;
 
     static {
+        //TODO: this realy shouldn't be static. Has to be determined from either working input or properties...
         currentKey = generatWalletKey("00000000000000000000000000000001", true);
     }
 
