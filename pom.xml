@@ -192,7 +192,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.1.201405082137</version>
+                <version>0.8.3</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -203,9 +203,9 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>nl.quintor.studybits.documents.entities.*</exclude>
-                        <exclude>nl.quintor.studybits.documents.models.*</exclude>
-                        <exclude>nl.quintor.studybits.documents.utils.*</exclude>
+                        <!--<exclude>nl.quintor.studybits.documents.entities.*</exclude>-->
+                        <!--<exclude>nl.quintor.studybits.documents.models.*</exclude>-->
+                        <!--<exclude>nl.quintor.studybits.documents.utils.*</exclude>-->
                     </excludes>
                 </configuration>
             </plugin>
