@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import nl.quintor.studybits.documents.utils.WalletUtils;
 import nl.quintor.studybits.documents.config.WalletConfig;
 import nl.quintor.studybits.documents.utils.WalletSafe;
-import nl.quintor.studybits.documents.entities.DiD;
+import nl.quintor.studybits.documents.entities.DidMetadata;
 import nl.quintor.studybits.documents.models.LoginModel;
 import org.hyperledger.indy.sdk.IndyException;
 import org.hyperledger.indy.sdk.did.Did;
@@ -49,9 +49,9 @@ public class WebController {
         walletConfig.setName(loginModel.getName() + "Wallet");
 
         try(WalletSafe walletSafe = new WalletSafe(walletConfig)) {
-            DiD did = new Gson().fromJson(Did.getListMyDidsWithMeta(walletSafe.unlock()).get().replaceAll("^.|.$", ""), DiD.class);
+            DidMetadata did = new Gson().fromJson(Did.getListMyDidsWithMeta(walletSafe.unlock()).get().replaceAll("^.|.$", ""), DidMetadata.class);
 
-            model.addAttribute("did", did.getDidaddress());
+            model.addAttribute("did", did.getDid());
             model.addAttribute("verkey", did.getVerkey());
             model.addAttribute("name", loginModel.getName());
         } catch (IndyException | ExecutionException e) {

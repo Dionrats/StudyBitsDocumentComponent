@@ -41,7 +41,9 @@ public class Seeder {
 
     private void createWallet() {
         try {
-            Wallet.createWallet(WalletUtils.composeConfig(walletConfig.getName(), walletConfig.getPath()), WalletUtils.composeUnlockCredentials()).get();
+            String config = WalletUtils.composeConfig(walletConfig.getName(), walletConfig.getPath());
+            String credentials = WalletUtils.composeUnlockCredentials();
+            Wallet.createWallet(config, credentials).get();
         } catch (ExecutionException | IndyException e) {
             log.error(e.getMessage());
         } catch (InterruptedException e) {

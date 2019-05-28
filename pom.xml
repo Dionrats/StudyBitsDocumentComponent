@@ -203,9 +203,9 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <!--<exclude>nl.quintor.studybits.documents.entities.*</exclude>-->
-                        <!--<exclude>nl.quintor.studybits.documents.models.*</exclude>-->
-                        <!--<exclude>nl.quintor.studybits.documents.utils.*</exclude>-->
+                        <exclude>nl.quintor.studybits.documents.entities.*</exclude>
+                        <exclude>nl.quintor.studybits.documents.models.*</exclude>
+                        <exclude>nl.quintor.studybits.documents.utils.*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
